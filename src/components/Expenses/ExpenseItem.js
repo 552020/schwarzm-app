@@ -1,10 +1,14 @@
+import React, { useState, UseState } from "react";
+
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 import "./ExpenseItem.css";
 
 function ExpenseItem(props) {
+  const [title, setTitle] = useState(props.title);
+
   const clickHandler = () => {
-    console.log("Clicked!!!");
+    setTitle("Updated!");
   };
 
   return (
@@ -13,7 +17,7 @@ function ExpenseItem(props) {
       <ExpenseDate date={props.date} />
 
       <div className="expense-item__description">
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
       <button onClick={clickHandler}>Change Title</button>
@@ -33,3 +37,4 @@ export default ExpenseItem;
 
 // <button onClick={clickHandler}>Change Title</button> here is important to have {clickHandler} and not {clickHanlder()} otherwise the funtion is executed immediately withouth waiting for the click
 // You can try it and you will see that in the console appears "Clicked!!!" four times without clicking the buttons
+//  const clickHandler = () => {console.log("Clicked!!!");};
