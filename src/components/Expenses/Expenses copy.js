@@ -8,6 +8,12 @@ import ExpensesFilter from "./ExpensesFilter";
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2020");
 
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+    console.log(selectedYear);
+    return (renderedArray = filteredArray);
+  };
+
   const mappedArray = props.items.map((expense) => (
     <ExpenseItem
       key={expense.id}
@@ -17,30 +23,17 @@ const Expenses = (props) => {
     />
   ));
 
+  let renderedArray = mappedArray;
+
   const filteredArray = mappedArray.filter((el) => el.date === filteredYear);
-
-  const filterChangeHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-    console.log(selectedYear);
-
-    return (
-      <Card className="expenses">
-        <ExpensesFilter
-          selected={filteredYear}
-          onChangeFilter={filterChangeHandler}
-        />
-        {filteredArray}
-      </Card>
-    );
-  };
 
   return (
     <Card className="expenses">
       <ExpensesFilter
-        selected={mappedArray}
+        selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {mappedArray}
+      {renderedArray}
     </Card>
   );
 };
