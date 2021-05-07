@@ -82,7 +82,7 @@ const ExpenseForm = (props) => {
       ) : (
         <div className="new-expense__actions">
           <button type="button" onClick={onClickHandler}>
-            Show Filter
+            Add New Expense
           </button>
         </div>
       )}
